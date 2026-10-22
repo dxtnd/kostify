@@ -95,7 +95,22 @@ class _KostifyAppState extends State<KostifyApp> {
         useMaterial3: true,
         fontFamily: 'Roboto',
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF1976D2),
+          seedColor: const Color(0xFF059669),
+          primary: const Color(0xFF059669),
+          surface: Colors.white,
+        ),
+        scaffoldBackgroundColor: const Color(0xFFF8FAFC),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          foregroundColor: Color(0xFF0F172A),
+          elevation: 0,
+          scrolledUnderElevation: 0,
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            color: Color(0xFF0F172A),
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+          ),
         ),
       ),
       home: const TenantLoginScreen(),
