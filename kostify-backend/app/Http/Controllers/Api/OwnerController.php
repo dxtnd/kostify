@@ -352,6 +352,7 @@ class OwnerController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'nik' => 'required|string|max:255|unique:users,nik,' . $tenant->user_id,
+            'password' => 'nullable|string|min:4',
             'phone' => 'required|string|max:20',
             'address' => 'nullable|string',
             'identity_document' => 'nullable|string|max:255',
@@ -360,12 +361,18 @@ class OwnerController extends Controller
 
         DB::transaction(function () use ($validated, $tenant) {
 
-            // Update akun Anak Kos
-            $tenant->user->update([
+            $userData = [
                 'name' => $validated['name'],
                 'nik' => $validated['nik'],
                 'status' => $validated['status'],
-            ]);
+            ];
+
+            if (!empty($validated['password'])) {
+                $userData['password'] = Hash::make($validated['password']);
+            }
+
+            // Update akun Anak Kos
+            $tenant->user->update($userData);
 
             // Update data penghuni
             $tenant->update([
