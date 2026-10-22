@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "30634648115",
+    "project_id": "kostify-2b11c",
+    "storage_bucket": "kostify-2b11c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:30634648115:android:fd180ba61c17eea164b946",
+        "android_client_info": {
+          "package_name": "com.example.kostify_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWrAVgISM2TKffnE2F_ZZjUq-fnOQ8VUw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
