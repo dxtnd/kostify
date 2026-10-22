@@ -1,5 +1,5 @@
 /* =========================================================
-   KOSTIFY LOGIN — ULTRA-CLEAN MODERN SAAS (STRIPE AESTHETIC)
+   KOSTIFY LOGIN — ULTRA-CLEAN SOFT GREEN SAAS
 ========================================================= */
 
 .login-page {
@@ -14,7 +14,7 @@
 }
 
 /* =========================================
-   BACKGROUND AMBIENT TEXTURE
+   BACKGROUND AMBIENT TEXTURE (SOFT GREEN)
 ========================================= */
 .ambient-glow {
   position: fixed;
@@ -22,23 +22,23 @@
   border-radius: 50%;
   filter: blur(100px);
   z-index: 0;
-  opacity: 0.5;
+  opacity: 0.55;
 }
 
 .ambient-glow-1 {
-  width: 500px;
-  height: 500px;
-  top: -120px;
-  left: 25%;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(5, 150, 105, 0.08) 50%, transparent 70%);
+  width: 520px;
+  height: 520px;
+  top: -100px;
+  left: 20%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.06) 50%, transparent 70%);
 }
 
 .ambient-glow-2 {
-  width: 600px;
-  height: 600px;
-  right: 10%;
-  bottom: -150px;
-  background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, rgba(99, 102, 241, 0.05) 50%, transparent 70%);
+  width: 580px;
+  height: 580px;
+  right: 12%;
+  bottom: -140px;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.18) 0%, rgba(16, 185, 129, 0.05) 50%, transparent 70%);
 }
 
 .ambient-grid {
@@ -47,7 +47,7 @@
   pointer-events: none;
   background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
   background-size: 32px 32px;
-  opacity: 0.4;
+  opacity: 0.35;
   z-index: 0;
 }
 
@@ -73,15 +73,15 @@
 }
 
 .brand-logo-badge {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  background: #0f172a;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.28);
 }
 
 .brand-text {
@@ -102,7 +102,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  padding: 2px 7px;
+  padding: 2px 8px;
   border-radius: 999px;
   background: #ecfdf5;
   color: #059669;
@@ -116,7 +116,7 @@
   font-size: 12px;
   font-weight: 500;
   color: #64748b;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(8px);
   padding: 6px 14px;
   border-radius: 999px;
@@ -153,7 +153,7 @@
   border: 1px solid #e2e8f0;
   box-shadow: 
     0 1px 3px rgba(15, 23, 42, 0.04),
-    0 24px 50px -12px rgba(15, 23, 42, 0.08);
+    0 24px 50px -12px rgba(16, 185, 129, 0.08);
   backdrop-filter: blur(16px);
 }
 
@@ -171,10 +171,10 @@
   align-items: center;
   justify-content: center;
   border-radius: 14px;
-  background: #f0fdf4;
+  background: #ecfdf5;
   color: #059669;
-  border: 1px solid #dcfce7;
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
+  border: 1px solid #d1fae5;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12);
 }
 
 .card-header h1 {
@@ -192,7 +192,7 @@
 }
 
 /* =========================================
-   SEGMENTED ROLE SWITCHER
+   SEGMENTED ROLE SWITCHER (SOFT GREEN ACTIVE)
 ========================================= */
 .role-switcher {
   display: grid;
@@ -211,7 +211,7 @@
   justify-content: center;
   gap: 8px;
   padding: 8px 12px;
-  border: none;
+  border: 1px solid transparent;
   background: transparent;
   border-radius: 9px;
   color: #64748b;
@@ -222,13 +222,14 @@
 }
 
 .role-tab-btn:hover {
-  color: #0f172a;
+  color: #059669;
 }
 
 .role-tab-btn.active {
   background: #ffffff;
-  color: #0f172a;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  color: #059669;
+  border-color: #d1fae5;
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.08);
 }
 
 .role-tab-btn.active svg {
@@ -267,8 +268,9 @@
   font-weight: 600;
   padding: 1px 7px;
   border-radius: 5px;
-  background: #f1f5f9;
-  color: #475569;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #d1fae5;
 }
 
 .forgot-link {
@@ -301,7 +303,7 @@
 
 .input-field-wrapper:focus-within {
   border-color: #10b981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.14);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.16);
 }
 
 .field-icon {
@@ -345,8 +347,8 @@
 }
 
 .toggle-pw-btn:hover {
-  color: #334155;
-  background: #f1f5f9;
+  color: #059669;
+  background: #ecfdf5;
 }
 
 /* =========================================
@@ -399,7 +401,7 @@
 }
 
 /* =========================================
-   PRIMARY BUTTON
+   PRIMARY BUTTON (SOFT EMERALD GRADIENT)
 ========================================= */
 .primary-login-btn {
   width: 100%;
@@ -410,18 +412,18 @@
   gap: 8px;
   border: none;
   border-radius: 10px;
-  background: #0f172a;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: #ffffff;
   font-size: 13.5px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.28);
   transition: all 0.15s ease;
 }
 
 .primary-login-btn:hover:not(:disabled) {
-  background: #059669;
-  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.28);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.35);
   transform: translateY(-1px);
 }
 
@@ -477,8 +479,8 @@
 
 .demo-card-btn:hover {
   background: #ffffff;
-  border-color: #059669;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+  border-color: #10b981;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
   transform: translateY(-1px);
 }
 
@@ -496,8 +498,9 @@
 }
 
 .admin-badge {
-  background: #eff6ff;
-  color: #2563eb;
+  background: #f0fdf4;
+  color: #047857;
+  border: 1px solid #dcfce7;
 }
 
 .demo-email {
