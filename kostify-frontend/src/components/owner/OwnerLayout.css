@@ -1,605 +1,396 @@
 /* =========================================================
-   OWNER LAYOUT
+   KOSTIFY OWNER LAYOUT — CLEAN SAAS AESTHETIC
 ========================================================= */
 
 .owner-layout {
   min-height: 100vh;
-  background: #f5f9f7;
+  background-color: #f8fafc;
+  display: flex;
 }
-
 
 /* =========================================================
    SIDEBAR
 ========================================================= */
-
 .owner-sidebar {
   position: fixed;
   top: 0;
   left: 0;
-
-  width: 255px;
+  width: 256px;
   height: 100vh;
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   background: #ffffff;
-  border-right: 1px solid #e4ece8;
-
+  border-right: 1px solid #eaecf0;
   z-index: 1000;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .owner-sidebar-top {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-
-  scrollbar-width: thin;
-  scrollbar-color: #d9e7e1 transparent;
+  padding: 0 14px;
 }
 
-.owner-sidebar-top::-webkit-scrollbar {
-  width: 5px;
-}
-
-.owner-sidebar-top::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.owner-sidebar-top::-webkit-scrollbar-thumb {
-  background: #d9e7e1;
-  border-radius: 10px;
-}
-
-
-/* =========================================================
-   LOGO
-========================================================= */
-
+/* BRAND LOGO */
 .owner-logo {
   display: flex;
   align-items: center;
-  gap: 11px;
-
-  padding: 22px 20px;
+  gap: 10px;
+  padding: 20px 8px 16px;
 }
 
 .owner-logo-mark {
-  width: 39px;
-  height: 39px;
-
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  flex-shrink: 0;
-
-  border-radius: 11px;
-
-  background: #eaf7f1;
-  color: #14805d;
-
-  font-size: 19px;
-  font-weight: 800;
+  border-radius: 9px;
+  background: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
 }
 
 .owner-logo-text strong {
   display: block;
-
-  color: #19352b;
-
   font-size: 16px;
+  font-weight: 800;
+  color: #0f172a;
+  letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
 .owner-logo-text span {
-  display: block;
-
-  margin-top: 3px;
-
-  color: #9aa6a1;
-
-  font-size: 9px;
+  display: inline-block;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #059669;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
-.owner-profile {
+/* USER PROFILE CARD */
+.owner-profile-card {
   display: flex;
   align-items: center;
   gap: 10px;
-
-  margin: 3px 14px 20px;
-  padding: 12px;
-
-  border-radius: 12px;
-
-  background: #f6faf8;
-  border: 1px solid #e8f0ec;
+  padding: 8px 10px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
 }
 
-.owner-profile-avatar {
-  width: 38px;
-  height: 38px;
-
+.owner-avatar {
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background: #dff2e9;
-  color: #227b5d;
-
-  font-size: 14px;
-  font-weight: 750;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 700;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
 }
 
-.owner-profile-info {
+.owner-meta {
   flex: 1;
   min-width: 0;
 }
 
-.owner-profile-info strong {
+.owner-meta strong {
   display: block;
-
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #0f172a;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-
-  color: #304139;
-
-  font-size: 11px;
 }
 
-.owner-profile-info span {
+.owner-meta span {
   display: block;
-
-  margin-top: 3px;
-
-  color: #8b9791;
-
-  font-size: 9px;
+  font-size: 10.5px;
+  color: #64748b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.owner-online-dot {
+.owner-status-indicator {
   width: 7px;
   height: 7px;
-
-  flex-shrink: 0;
-
   border-radius: 50%;
-
-  background: #36a876;
-
-  box-shadow: 0 0 0 3px #e4f5ed;
+  background: #10b981;
+  box-shadow: 0 0 0 2px #d1fae5;
 }
 
-
-/* =========================================================
-   KOST AKTIF
-========================================================= */
-
-.owner-kost-selector {
-  margin: 18px 14px 12px;
+/* KOST PROPERTY SELECTOR */
+.owner-property-box {
+  margin-bottom: 18px;
+  padding: 10px 10px 8px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.03);
 }
 
-.owner-kost-selector label {
-  display: block;
-  margin: 0 8px 7px;
-  color: #a0aaa5;
-  font-size: 9px;
-  font-weight: 750;
-  letter-spacing: 1.1px;
+.property-header {
+  margin-bottom: 6px;
 }
 
-.owner-kost-select-wrapper {
-  display: flex;
-  align-items: center;
-  min-height: 42px;
-  border: 1px solid #e8efeb;
-  border-radius: 9px;
-  background: #f8fbf9;
-  overflow: hidden;
-}
-
-.owner-kost-icon {
-  width: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-
-  color: #16805c;
-  font-size: 15px;
-}
-
-.owner-kost-select-wrapper select {
-  flex: 1;
-  width: 0;
-  border: none;
-  outline: none;
-  background: transparent;
-
-  padding: 9px 8px 9px 0;
-
-  color: #34453d;
-  font-family: inherit;
-  font-size: 11px;
-  font-weight: 650;
-
-  cursor: pointer;
-}
-
-.owner-kost-select-wrapper select:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-
-.owner-kost-address {
-  display: block;
-  margin: 5px 8px 0;
-
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  color: #9aa6a1;
-  font-size: 9px;
-}
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-.owner-navigation {
-  padding: 0 11px 15px;
-}
-
-.owner-nav-label {
-  margin: 0 10px 8px;
-
-  color: #a0aaa5;
-
-  font-size: 9px;
-  font-weight: 750;
-
-  letter-spacing: 1.2px;
-}
-
-.owner-nav-space {
-  margin-top: 23px;
-}
-
-.owner-nav-item {
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-
-  gap: 11px;
-
-  border: none;
-  border-radius: 9px;
-
-  background: transparent;
-
-  padding: 10px 11px;
-  margin-bottom: 3px;
-
-  color: #65736c;
-
-  font-family: inherit;
-  font-size: 12px;
-  font-weight: 600;
-
-  text-align: left;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.owner-nav-item:hover {
-  background: #f3f8f5;
-  color: #287d5e;
-}
-
-.owner-nav-item.active {
-  background: #eaf7f1;
-  color: #167c59;
-
+.property-tag {
+  font-size: 9.5px;
   font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.06em;
 }
 
-.owner-nav-icon {
-  width: 22px;
-
+.property-select-wrapper {
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  font-size: 14px;
-  font-weight: 700;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  padding: 0 8px;
 }
 
-
-/* =========================================================
-   SIDEBAR BOTTOM
-========================================================= */
-
-.owner-sidebar-bottom {
-  flex-shrink: 0;
-
-  padding: 14px;
-
-  border-top: 1px solid #edf2ef;
-
+.property-select-wrapper:focus-within {
+  border-color: #0f172a;
   background: #ffffff;
 }
 
-
-/* =========================================================
-   SYSTEM STATUS
-========================================================= */
-
-.owner-system-status {
+.property-icon {
   display: flex;
   align-items: center;
-
-  gap: 9px;
-
-  padding: 10px;
-  margin-bottom: 9px;
-
-  border-radius: 9px;
-
-  background: #f7faf8;
+  color: #64748b;
+  margin-right: 6px;
 }
 
-.owner-system-dot {
-  width: 8px;
-  height: 8px;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background: #3cab79;
-
-  box-shadow: 0 0 0 3px #e3f4ec;
-}
-
-.owner-system-status strong {
-  display: block;
-
-  color: #4b5b54;
-
-  font-size: 10px;
-}
-
-.owner-system-status small {
-  display: block;
-
-  margin-top: 2px;
-
-  color: #9aa49f;
-
-  font-size: 8px;
-}
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-.owner-logout {
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-
-  gap: 10px;
-
+.property-select-wrapper select {
+  flex: 1;
   border: none;
-  border-radius: 9px;
-
   background: transparent;
-
-  padding: 10px;
-
-  color: #89948f;
-
+  outline: none;
+  padding: 7px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #0f172a;
   font-family: inherit;
+  cursor: pointer;
+}
+
+.property-location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 5px;
+  font-size: 10.5px;
+  color: #94a3b8;
+}
+
+/* NAVIGATION */
+.nav-group-label {
+  padding: 0 8px;
+  margin: 12px 0 6px;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.08em;
+}
+
+.nav-space {
+  margin-top: 18px;
+}
+
+.nav-item-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  margin-bottom: 2px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+
+.nav-item-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.nav-item-btn.active {
+  background: #0f172a;
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.15);
+}
+
+.nav-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+/* SIDEBAR FOOTER */
+.owner-sidebar-footer {
+  padding: 14px;
+  border-top: 1px solid #eaecf0;
+  background: #ffffff;
+}
+
+.system-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+}
+
+.system-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+}
+
+.system-pill strong {
+  display: block;
   font-size: 11px;
   font-weight: 600;
+  color: #334155;
+}
 
+.system-pill small {
+  display: block;
+  font-size: 9.5px;
+  color: #94a3b8;
+}
+
+.logout-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
   cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
+  transition: all 0.15s ease;
 }
 
-.owner-logout:hover {
-  background: #fff2f2;
-  color: #ad5555;
+.logout-btn:hover {
+  background: #fef2f2;
+  color: #dc2626;
 }
 
-.owner-logout span {
-  font-size: 16px;
+.logout-icon {
+  display: flex;
+  align-items: center;
 }
-
 
 /* =========================================================
-   MAIN
+   MAIN VIEWPORT
 ========================================================= */
-
-.owner-main {
+.owner-main-viewport {
   min-height: 100vh;
-
-  margin-left: 255px;
-
-  background: #f5f9f7;
+  margin-left: 256px;
+  flex: 1;
+  background-color: #f8fafc;
 }
 
-
-/* =========================================================
-   MOBILE HEADER
-========================================================= */
-
-.owner-mobile-header {
+/* MOBILE */
+.mobile-header-bar {
   display: none;
 }
-
-
-/* =========================================================
-   OVERLAY
-========================================================= */
 
 .owner-sidebar-overlay {
   display: none;
 }
 
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
 @media (max-width: 850px) {
-
   .owner-sidebar {
     transform: translateX(-100%);
-
-    transition:
-      transform 0.25s ease;
   }
 
   .owner-sidebar.owner-sidebar-open {
     transform: translateX(0);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   }
 
-  .owner-main {
+  .owner-main-viewport {
     margin-left: 0;
   }
 
-  .owner-mobile-header {
-    height: 62px;
-
+  .mobile-header-bar {
+    height: 56px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    padding: 0 17px;
-
+    padding: 0 16px;
     background: #ffffff;
-
-    border-bottom: 1px solid #e5ece8;
-
+    border-bottom: 1px solid #eaecf0;
     position: sticky;
     top: 0;
-
     z-index: 900;
   }
 
-  .owner-menu-button {
-    width: 36px;
-    height: 36px;
-
+  .mobile-toggle-btn {
     border: none;
-    border-radius: 9px;
-
-    background: #f0f7f4;
-    color: #277d5e;
-
-    font-size: 18px;
-
+    background: transparent;
+    color: #0f172a;
     cursor: pointer;
-  }
-
-  .owner-mobile-brand {
     display: flex;
     align-items: center;
-
-    gap: 8px;
-
-    color: #20372d;
-
-    font-size: 15px;
   }
 
-  .owner-mobile-logo {
-    width: 29px;
-    height: 29px;
+  .mobile-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+  }
 
+  .mobile-avatar {
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 8px;
-
-    background: #eaf7f1;
-    color: #18815e;
-
-    font-size: 14px;
-    font-weight: 800;
-  }
-
-  .owner-mobile-avatar {
-    width: 34px;
-    height: 34px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     border-radius: 50%;
-
-    background: #dff2e9;
-    color: #237b5d;
-
-    font-size: 12px;
-    font-weight: 750;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
   }
 
   .owner-sidebar-overlay {
     display: block;
-
     position: fixed;
     inset: 0;
-
-    background: rgba(18, 35, 29, 0.28);
-
+    background: rgba(15, 23, 42, 0.3);
+    backdrop-filter: blur(2px);
     z-index: 999;
   }
-
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-========================================================= */
-
-@media (max-width: 400px) {
-
-  .owner-sidebar {
-    width: 245px;
-  }
-
-  .owner-kost-selector {
-    margin-left: 12px;
-    margin-right: 12px;
-  }
-
 }
