@@ -17,6 +17,19 @@ function Payments() {
 
   const [selectedBill, setSelectedBill] = useState(null);
 
+  const [rejectModal, setRejectModal] = useState({
+    open: false,
+    bill: null,
+    reason: "Bukti transfer tidak jelas / buram.",
+  });
+
+  const quickRejectionReasons = [
+    "Bukti transfer tidak jelas / buram",
+    "Nominal transfer tidak sesuai",
+    "Rekening tujuan tidak sesuai",
+    "Dana belum masuk ke mutasi rekening",
+  ];
+
   const [toast, setToast] = useState({
     show: false,
     type: "",
@@ -248,23 +261,12 @@ function Payments() {
   // UPDATE STATUS PEMBAYARAN
   // =====================================================
 
-  const updateBillStatus = async (
-    bill,
-    status
-  ) => {
+  const confirmPayment = async (bill) => {
     if (!bill?.id) return;
 
-    const tenantName =
-      bill.tenant?.user?.name ||
-      "penghuni";
-
-    const action =
-      status === "paid"
-        ? "mengonfirmasi"
-        : "menolak";
-
+    const tenantName = bill.tenant?.user?.name || "penghuni";
     const confirmed = window.confirm(
-      `Yakin ingin ${action} pembayaran ${tenantName}?`
+      `Yakin ingin mengonfirmasi pembayaran ${tenantName}?`
     );
 
     if (!confirmed) return;
@@ -272,40 +274,74 @@ function Payments() {
     try {
       setProcessingId(bill.id);
 
-      await api.put(
-        `/owner/bills/${bill.id}/status`,
-        {
-          status,
-        }
-      );
+      await api.put(`/owner/bills/${bill.id}/status`, {
+        status: "paid",
+      });
 
       setSelectedBill(null);
 
       // Beri tahu halaman lain
-      window.dispatchEvent(
-        new Event("bill-status-updated")
-      );
+      window.dispatchEvent(new Event("bill-status-updated"));
 
-      showToast(
-        "success",
-        status === "paid"
-          ? "Pembayaran berhasil dikonfirmasi."
-          : "Pembayaran berhasil ditolak."
-      );
-
-      // Refresh data setelah update
+      showToast("success", "Pembayaran berhasil dikonfirmasi.");
       await fetchBills();
-
     } catch (error) {
-      console.error(
-        "Gagal mengubah status pembayaran:",
-        error
-      );
-
+      console.error("Gagal mengonfirmasi pembayaran:", error);
       showToast(
         "error",
-        error.response?.data?.message ||
-          "Gagal mengubah status pembayaran."
+        error.response?.data?.message || "Gagal mengonfirmasi pembayaran."
+      );
+    } finally {
+      setProcessingId(null);
+    }
+  };
+
+  const openRejectModal = (bill) => {
+    if (!bill?.id) return;
+    setRejectModal({
+      open: true,
+      bill,
+      reason: "Bukti transfer tidak jelas / buram.",
+    });
+  };
+
+  const closeRejectModal = () => {
+    setRejectModal({
+      open: false,
+      bill: null,
+      reason: "",
+    });
+  };
+
+  const handleConfirmReject = async () => {
+    if (!rejectModal.bill?.id) return;
+
+    const reasonText = rejectModal.reason.trim();
+    if (!reasonText) {
+      showToast("error", "Mohon isi atau pilih alasan penolakan.");
+      return;
+    }
+
+    try {
+      setProcessingId(rejectModal.bill.id);
+
+      await api.put(`/owner/bills/${rejectModal.bill.id}/status`, {
+        status: "rejected",
+        rejection_reason: reasonText,
+      });
+
+      closeRejectModal();
+      setSelectedBill(null);
+
+      window.dispatchEvent(new Event("bill-status-updated"));
+
+      showToast("success", "Pembayaran berhasil ditolak dengan alasan.");
+      await fetchBills();
+    } catch (error) {
+      console.error("Gagal menolak pembayaran:", error);
+      showToast(
+        "error",
+        error.response?.data?.message || "Gagal menolak pembayaran."
       );
     } finally {
       setProcessingId(null);
@@ -745,6 +781,7 @@ function Payments() {
 
                           <span
                             className={`payments-status ${bill.status}`}
+                            title={bill.rejection_reason || undefined}
                           >
 
                             <span className="payments-status-dot"></span>
@@ -754,6 +791,12 @@ function Payments() {
                             )}
 
                           </span>
+
+                          {bill.status === "rejected" && bill.rejection_reason && (
+                            <small className="payments-table-rejection-note" title={bill.rejection_reason}>
+                              {bill.rejection_reason}
+                            </small>
+                          )}
 
                         </td>
 
@@ -796,10 +839,7 @@ function Payments() {
                               <button
                                 className="payments-action approve"
                                 onClick={() =>
-                                  updateBillStatus(
-                                    bill,
-                                    "paid"
-                                  )
+                                  confirmPayment(bill)
                                 }
                                 disabled={
                                   isProcessing
@@ -812,10 +852,7 @@ function Payments() {
                               <button
                                 className="payments-action reject"
                                 onClick={() =>
-                                  updateBillStatus(
-                                    bill,
-                                    "rejected"
-                                  )
+                                  openRejectModal(bill)
                                 }
                                 disabled={
                                   isProcessing
@@ -997,6 +1034,14 @@ function Payments() {
 
             </div>
 
+            {/* REJECTION REASON BANNER IF ALREADY REJECTED */}
+            {selectedBill.status === "rejected" && selectedBill.rejection_reason && (
+              <div className="payments-rejection-banner">
+                <span className="payments-rejection-label">Alasan Penolakan:</span>
+                <p>{selectedBill.rejection_reason}</p>
+              </div>
+            )}
+
             {/* MODAL ACTION */}
 
             {selectedBill.status ===
@@ -1007,10 +1052,7 @@ function Payments() {
                 <button
                   className="payments-reject-btn"
                   onClick={() =>
-                    updateBillStatus(
-                      selectedBill,
-                      "rejected"
-                    )
+                    openRejectModal(selectedBill)
                   }
                   disabled={
                     processingId ===
@@ -1023,10 +1065,7 @@ function Payments() {
                 <button
                   className="payments-approve-btn"
                   onClick={() =>
-                    updateBillStatus(
-                      selectedBill,
-                      "paid"
-                    )
+                    confirmPayment(selectedBill)
                   }
                   disabled={
                     processingId ===
@@ -1044,6 +1083,153 @@ function Payments() {
 
         </div>
 
+      )}
+
+      {/* =========================================================
+          MODAL ALASAN PENOLAKAN PEMBAYARAN
+      ========================================================= */}
+      {rejectModal.open && rejectModal.bill && (
+        <div
+          className="payments-modal-overlay"
+          onMouseDown={(e) => {
+            if (
+              e.target === e.currentTarget &&
+              processingId !== rejectModal.bill.id
+            ) {
+              closeRejectModal();
+            }
+          }}
+        >
+          <div className="payments-reject-modal">
+            <div className="payments-reject-modal-header">
+              <div className="payments-reject-title-wrap">
+                <div className="payments-reject-icon-badge">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#dc2626"
+                    strokeWidth="2.2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="15" y1="9" x2="9" y2="15"></line>
+                    <line x1="9" y1="9" x2="15" y2="15"></line>
+                  </svg>
+                </div>
+                <div>
+                  <h3>Alasan Tolak Pembayaran</h3>
+                  <p>Beritahu alasan agar penghuni bisa bayar/upload ulang.</p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                className="payments-modal-close"
+                onClick={closeRejectModal}
+                disabled={processingId === rejectModal.bill.id}
+                title="Tutup"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="payments-reject-modal-body">
+              {/* TARGET BILL SUMMARY */}
+              <div className="payments-reject-summary">
+                <div>
+                  <span>Penghuni</span>
+                  <strong>
+                    {rejectModal.bill.tenant?.user?.name || "Penghuni"}
+                  </strong>
+                </div>
+                <div>
+                  <span>Kamar</span>
+                  <strong>
+                    Kamar {rejectModal.bill.tenant?.room?.room_number || "-"}
+                  </strong>
+                </div>
+                <div>
+                  <span>Total Tagihan</span>
+                  <strong className="payments-amount-highlight">
+                    {formatRupiah(rejectModal.bill.amount)}
+                  </strong>
+                </div>
+              </div>
+
+              {/* QUICK CHIPS */}
+              <label className="payments-reject-label">
+                Pilih Alasan Cepat:
+              </label>
+              <div className="payments-reject-chips">
+                {quickRejectionReasons.map((reasonText, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    className={`payments-chip-btn ${
+                      rejectModal.reason === reasonText ? "active" : ""
+                    }`}
+                    onClick={() =>
+                      setRejectModal((prev) => ({
+                        ...prev,
+                        reason: reasonText,
+                      }))
+                    }
+                  >
+                    {reasonText}
+                  </button>
+                ))}
+              </div>
+
+              {/* TEXTAREA */}
+              <label className="payments-reject-label">
+                Rincian Alasan Penolakan:
+              </label>
+              <textarea
+                className="payments-reject-textarea"
+                rows="3"
+                placeholder="Tuliskan catatan atau instruksi perbaikan untuk penghuni..."
+                value={rejectModal.reason}
+                onChange={(e) =>
+                  setRejectModal((prev) => ({
+                    ...prev,
+                    reason: e.target.value,
+                  }))
+                }
+                maxLength="500"
+              />
+              <span className="payments-reject-hint">
+                Catatan ini akan langsung tampil di aplikasi mobile anak kos.
+              </span>
+            </div>
+
+            <div className="payments-reject-modal-footer">
+              <button
+                type="button"
+                className="payments-cancel-btn"
+                onClick={closeRejectModal}
+                disabled={processingId === rejectModal.bill.id}
+              >
+                Batal
+              </button>
+              <button
+                type="button"
+                className="payments-confirm-reject-btn"
+                onClick={handleConfirmReject}
+                disabled={
+                  processingId === rejectModal.bill.id ||
+                  !rejectModal.reason.trim()
+                }
+              >
+                {processingId === rejectModal.bill.id
+                  ? "Menolak..."
+                  : "Konfirmasi Tolak"}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
     </div>

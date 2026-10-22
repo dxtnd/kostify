@@ -511,6 +511,7 @@ class OwnerController extends Controller
 
         $validated = $request->validate([
             'status' => 'required|in:paid,rejected',
+            'rejection_reason' => 'nullable|string|max:500',
         ]);
 
         $bill = Bill::with('tenant.kost')->find($id);
@@ -533,12 +534,15 @@ class OwnerController extends Controller
             ], 422);
         }
 
-        $bill->update([
+        $updateData = [
             'status' => $validated['status'],
-            'paid_at' => $validated['status'] === 'paid'
-                ? now()
+            'paid_at' => $validated['status'] === 'paid' ? now() : null,
+            'rejection_reason' => $validated['status'] === 'rejected'
+                ? ($validated['rejection_reason'] ?? 'Bukti pembayaran ditolak oleh pemilik kost.')
                 : null,
-        ]);
+        ];
+
+        $bill->update($updateData);
 
         return response()->json([
             'message' => $validated['status'] === 'paid'

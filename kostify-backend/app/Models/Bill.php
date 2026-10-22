@@ -18,6 +18,7 @@ class Bill extends Model
         'period',
         'status',
         'payment_proof',
+        'rejection_reason',
         'paid_at',
     ];
 

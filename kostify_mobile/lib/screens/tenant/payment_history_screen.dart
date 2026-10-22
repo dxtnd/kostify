@@ -252,6 +252,32 @@ class _PaymentHistoryScreenState extends State<PaymentHistoryScreen> {
                     ),
                   ],
                 ),
+
+                if (status == 'rejected' &&
+                    bill['rejection_reason'] != null &&
+                    bill['rejection_reason'].toString().trim().isNotEmpty) ...[
+                  const SizedBox(height: 10),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFEF2F2),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: const Color(0xFFFECACA)),
+                    ),
+                    child: Text(
+                      'Alasan: ${bill['rejection_reason']}',
+                      style: const TextStyle(
+                        fontSize: 11,
+                        color: Color(0xFF991B1B),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ],
               ],
             ),
           ),

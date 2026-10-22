@@ -320,6 +320,60 @@ class _BillsScreenState extends State<BillsScreen> {
                   ),
                 ),
 
+                // ALASAN PENOLAKAN JIKA DITOLAK
+                if (status == 'rejected' &&
+                    bill['rejection_reason'] != null &&
+                    bill['rejection_reason'].toString().trim().isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 14,
+                      vertical: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFEF2F2),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                        color: const Color(0xFFFECACA),
+                      ),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Icon(
+                          Icons.info_outline_rounded,
+                          color: Color(0xFFDC2626),
+                          size: 16,
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: RichText(
+                            text: TextSpan(
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: Color(0xFF991B1B),
+                                height: 1.4,
+                              ),
+                              children: [
+                                const TextSpan(
+                                  text: 'Alasan Ditolak: ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: bill['rejection_reason'].toString(),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+
                 // BAYAR BUTTON
                 if (canPay) ...[
                   const SizedBox(height: 14),
