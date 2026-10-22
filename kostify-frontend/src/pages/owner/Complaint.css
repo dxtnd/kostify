@@ -36,7 +36,7 @@
 /* STATS */
 .complaint-stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, minmax(240px, 340px));
   gap: 16px;
   margin-bottom: 24px;
 }
@@ -686,12 +686,6 @@
 }
 
 /* RESPONSIVE */
-@media (max-width: 1200px) {
-  .complaint-stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
 @media (max-width: 700px) {
   .complaint-page {
     padding: 20px 16px;
