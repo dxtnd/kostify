@@ -285,16 +285,17 @@ class _TenantDashboardScreenState extends State<TenantDashboardScreen> {
         title: Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(7),
+              width: 34,
+              height: 34,
               decoration: BoxDecoration(
-                color: const Color(0xFFECFDF5),
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: const Color(0xFFA7F3D0)),
               ),
-              child: const Icon(
-                Icons.cottage_rounded,
-                color: Color(0xFF059669),
-                size: 20,
+              clipBehavior: Clip.antiAlias,
+              child: Image.asset(
+                'assets/icon/app_logo.png',
+                fit: BoxFit.contain,
               ),
             ),
             const SizedBox(width: 10),

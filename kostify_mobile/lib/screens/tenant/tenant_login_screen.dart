@@ -118,30 +118,27 @@ class _TenantLoginScreenState extends State<TenantLoginScreen> {
                     // BRAND LOGO & TITLE
                     // =========================
                     Container(
-                      width: 76,
-                      height: 76,
+                      width: 82,
+                      height: 82,
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Color(0xFF10B981),
-                            Color(0xFF059669),
-                          ],
-                        ),
+                        color: Colors.white,
                         borderRadius: BorderRadius.circular(22),
+                        border: Border.all(
+                          color: const Color(0xFFD1FAE5),
+                          width: 1.5,
+                        ),
                         boxShadow: [
                           BoxShadow(
-                            color: const Color(0xFF059669).withValues(alpha: 0.3),
-                            blurRadius: 20,
-                            offset: const Offset(0, 8),
+                            color: const Color(0xFF059669).withValues(alpha: 0.15),
+                            blurRadius: 18,
+                            offset: const Offset(0, 6),
                           ),
                         ],
                       ),
-                      child: const Icon(
-                        Icons.cottage_rounded,
-                        color: Colors.white,
-                        size: 40,
+                      clipBehavior: Clip.antiAlias,
+                      child: Image.asset(
+                        'assets/icon/app_logo.png',
+                        fit: BoxFit.contain,
                       ),
                     ),
 
