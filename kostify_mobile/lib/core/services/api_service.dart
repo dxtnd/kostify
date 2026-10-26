@@ -1,6 +1,6 @@
 
 import 'dart:convert';
-import 'dart:typed_data';
+import 'package:flutter/foundation.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -272,22 +272,26 @@ class ApiService {
   // ============================================================
 
   static Future<void> logout() async {
-    final token = await getToken();
+    try {
+      final token = await getToken();
 
-    if (token != null) {
-      await http.post(
-        Uri.parse('$baseUrl/logout'),
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-      );
+      if (token != null && token.isNotEmpty) {
+        await http.post(
+          Uri.parse('$baseUrl/logout'),
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ).timeout(const Duration(seconds: 3));
+      }
+    } catch (e) {
+      debugPrint('Logout backend notification skipped: $e');
+    } finally {
+      final prefs = await SharedPreferences.getInstance();
+
+      await prefs.remove('token');
+      await prefs.remove('user');
+      await prefs.remove('tenant');
     }
-
-    final prefs = await SharedPreferences.getInstance();
-
-    await prefs.remove('token');
-    await prefs.remove('user');
-    await prefs.remove('tenant');
   }
 }

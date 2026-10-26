@@ -117,7 +117,24 @@ class _TenantDashboardScreenState extends State<TenantDashboardScreen> {
 
     if (shouldLogout != true) return;
 
-    await ApiService.logout();
+    if (!mounted) return;
+
+    // Tampilkan loading singkat saat proses logout
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const Center(
+        child: CircularProgressIndicator(
+          color: Color(0xFF059669),
+        ),
+      ),
+    );
+
+    try {
+      await ApiService.logout();
+    } catch (e) {
+      debugPrint('Logout error: $e');
+    }
 
     if (!mounted) return;
 
