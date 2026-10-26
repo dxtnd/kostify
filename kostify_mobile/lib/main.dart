@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'firebase_options.dart';
 import 'screens/tenant/tenant_login_screen.dart';
+import 'screens/tenant/tenant_dashboard_screen.dart';
 import 'core/services/api_service.dart';
 
 Future<void> main() async {
@@ -14,6 +16,11 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  // Cek sesi login dari SharedPreferences
+  final prefs = await SharedPreferences.getInstance();
+  final token = prefs.getString('token');
+  final bool isLoggedIn = token != null && token.trim().isNotEmpty;
 
   // FCM: menerima notifikasi saat aplikasi terbuka.
   // Pesan ditampilkan di Debug Console.
@@ -33,11 +40,12 @@ Future<void> main() async {
     debugPrint('====================================');
   });
 
-  runApp(const KostifyApp());
+  runApp(KostifyApp(isLoggedIn: isLoggedIn));
 }
 
 class KostifyApp extends StatefulWidget {
-  const KostifyApp({super.key});
+  final bool isLoggedIn;
+  const KostifyApp({super.key, required this.isLoggedIn});
 
   @override
   State<KostifyApp> createState() => _KostifyAppState();
@@ -113,7 +121,9 @@ class _KostifyAppState extends State<KostifyApp> {
           ),
         ),
       ),
-      home: const TenantLoginScreen(),
+      home: widget.isLoggedIn
+          ? const TenantDashboardScreen()
+          : const TenantLoginScreen(),
     );
   }
 }
