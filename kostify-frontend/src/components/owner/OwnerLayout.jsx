@@ -210,18 +210,6 @@ function OwnerLayout() {
             </button>
 
             <button
-              className={`nav-item-btn ${isActive("/owner/bills") ? "active" : ""}`}
-              onClick={() => handleNavigate("/owner/bills")}
-            >
-              <span className="nav-item-icon">
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>
-                </svg>
-              </span>
-              <span>Pembayaran</span>
-            </button>
-
-            <button
               className={`nav-item-btn ${isActive("/owner/billing") ? "active" : ""}`}
               onClick={() => handleNavigate("/owner/billing")}
             >
@@ -233,6 +221,18 @@ function OwnerLayout() {
                 </svg>
               </span>
               <span>Penagihan</span>
+            </button>
+
+            <button
+              className={`nav-item-btn ${isActive("/owner/bills") ? "active" : ""}`}
+              onClick={() => handleNavigate("/owner/bills")}
+            >
+              <span className="nav-item-icon">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/>
+                </svg>
+              </span>
+              <span>Pembayaran</span>
             </button>
 
             <button

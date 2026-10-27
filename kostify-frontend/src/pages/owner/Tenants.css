@@ -912,6 +912,42 @@
   line-height: 1.5;
 }
 
+/* PASSWORD INPUT WRAP WITH TOGGLE BUTTON */
+.password-input-wrap {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrap input {
+  width: 100%;
+  padding-right: 42px !important;
+}
+
+.password-input-wrap .toggle-pw-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #8c9b95;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.password-input-wrap .toggle-pw-btn:hover {
+  color: #07845e;
+  background: #eef6f3;
+}
+
 /* =========================
    FORM ACTIONS
 ========================= */
