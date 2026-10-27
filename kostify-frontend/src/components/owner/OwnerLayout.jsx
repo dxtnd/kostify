@@ -274,12 +274,26 @@ function OwnerLayout() {
       <main className="owner-main-viewport">
         {/* Mobile Header Bar */}
         <header className="mobile-header-bar">
-          <button className="mobile-toggle-btn" onClick={() => setSidebarOpen(true)}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <button className="mobile-toggle-btn" onClick={() => setSidebarOpen(true)} aria-label="Buka Menu">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/>
             </svg>
           </button>
-          <div className="mobile-title">Kostify</div>
+          <div className="mobile-brand-wrap">
+            <div className="mobile-logo-mark">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              </svg>
+            </div>
+            <div className="mobile-brand-info">
+              <strong>Kostify</strong>
+              {activeKost?.name && (
+                <span className="mobile-active-kost" title={activeKost.name}>
+                  {activeKost.name}
+                </span>
+              )}
+            </div>
+          </div>
           <div className="mobile-avatar">
             {user.name ? user.name.charAt(0).toUpperCase() : "P"}
           </div>

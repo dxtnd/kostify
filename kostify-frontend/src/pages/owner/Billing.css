@@ -593,54 +593,93 @@
 
 @media (max-width: 700px) {
   .billing-page {
-    padding: 20px 16px;
+    padding: 16px 14px 44px;
   }
 
   .billing-header h1 {
-    font-size: 24px;
-  }
-
-  .billing-stats {
-    grid-template-columns: 1fr;
-  }
-
-  .billing-filter {
-    width: 100%;
-    overflow-x: auto;
-  }
-
-  .billing-filter button {
-    white-space: nowrap;
-  }
-
-  .billing-card-header {
-    padding: 17px;
-  }
-
-  .billing-table th,
-  .billing-table td {
-    padding: 13px 14px;
-  }
-
-  .billing-toast {
-    right: 16px;
-    bottom: 16px;
-    left: 16px;
-    min-width: auto;
-  }
-}
-
-@media (max-width: 430px) {
-  .billing-page {
-    padding: 17px 12px;
+    font-size: 20px;
+    margin-bottom: 4px;
   }
 
   .billing-header p {
     font-size: 12px;
   }
 
+  .billing-stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
   .billing-stat-card {
-    padding: 15px;
+    padding: 12px 13px;
+    border-radius: 12px;
+    gap: 10px;
+  }
+
+  .billing-stat-icon {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    border-radius: 8px;
+  }
+
+  .billing-stat-card span {
+    font-size: 9.5px;
+  }
+
+  .billing-stat-card strong {
+    font-size: 20px;
+  }
+
+  .billing-filter {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+
+  .billing-filter button {
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 11.5px;
+  }
+
+  .billing-card-header {
+    padding: 14px;
+  }
+
+  .billing-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .billing-table th,
+  .billing-table td {
+    padding: 10px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .billing-toast {
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+    min-width: auto;
+  }
+}
+
+@media (max-width: 430px) {
+  .billing-page {
+    padding: 14px 11px 36px;
+  }
+
+  .billing-header p {
+    font-size: 11px;
+  }
+
+  .billing-stat-card strong {
+    font-size: 18px;
   }
 }
 

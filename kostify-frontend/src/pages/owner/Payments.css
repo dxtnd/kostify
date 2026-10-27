@@ -1098,15 +1098,17 @@
 @media (max-width: 640px) {
 
   .payments-page {
-    padding: 22px 16px 35px;
+    padding: 16px 14px 44px;
   }
 
   .payments-header {
-    margin-bottom: 22px;
+    margin-bottom: 20px;
+    gap: 12px;
   }
 
   .payments-header h1 {
-    font-size: 25px;
+    font-size: 20px;
+    margin-bottom: 4px;
   }
 
   .payments-header p {
@@ -1116,15 +1118,37 @@
   .payments-refresh-btn {
     width: 100%;
     justify-content: center;
+    padding: 8px 14px;
+    font-size: 12px;
+    border-radius: 9px;
   }
 
   .payments-stat-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
+    margin-bottom: 18px;
   }
 
   .payments-stat-card {
-    min-height: 78px;
+    min-height: 68px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    gap: 10px;
+  }
+
+  .payments-stat-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    border-radius: 9px;
+  }
+
+  .payments-stat-card span {
+    font-size: 9.5px;
+  }
+
+  .payments-stat-card strong {
+    font-size: 20px;
   }
 
   .payments-card {
@@ -1133,14 +1157,24 @@
 
   .payments-toolbar {
     padding: 14px;
+    gap: 10px;
+  }
+
+  .payments-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .payments-table th {
-    padding: 12px;
+    padding: 10px 12px;
+    font-size: 11.5px;
+    white-space: nowrap;
   }
 
   .payments-table td {
-    padding: 12px;
+    padding: 11px 12px;
+    font-size: 12px;
+    white-space: nowrap;
   }
 
   .payments-modal-overlay {

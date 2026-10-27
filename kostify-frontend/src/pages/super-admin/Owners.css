@@ -859,31 +859,42 @@
 ========================= */
 
 @media (max-width: 900px) {
-
   .owners-page {
-    padding: 24px;
+    padding: 20px 16px 40px;
   }
 
   .owners-header {
     flex-direction: column;
+    gap: 14px;
+    margin-bottom: 20px;
   }
 
   .header-actions {
     width: 100%;
+    gap: 8px;
   }
 
   .refresh-button,
   .add-owner-button {
     flex: 1;
+    justify-content: center;
   }
 
   .owner-stats {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .owner-stat-card:nth-child(3) {
+    grid-column: span 2;
   }
 
   .owners-card-header {
     align-items: flex-start;
     flex-direction: column;
+    gap: 12px;
+    padding: 16px;
   }
 
   .search-box {
@@ -891,15 +902,18 @@
   }
 }
 
-
 @media (max-width: 600px) {
-
   .owners-page {
-    padding: 18px;
+    padding: 16px 14px 44px;
   }
 
   .owners-header h1 {
-    font-size: 24px;
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .owners-header p {
+    font-size: 12px;
   }
 
   .header-left {
@@ -908,21 +922,47 @@
 
   .header-actions {
     flex-direction: column;
+    gap: 8px;
   }
 
   .refresh-button,
   .add-owner-button {
     width: 100%;
     flex: none;
+    padding: 9px 14px;
+    font-size: 12px;
+  }
+
+  .owner-stat-card {
+    padding: 12px 14px;
+    border-radius: 12px;
+    gap: 10px;
+  }
+
+  .owner-stat-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    border-radius: 9px;
+  }
+
+  .owner-stat-card span {
+    font-size: 10px;
+  }
+
+  .owner-stat-card strong {
+    font-size: 20px;
   }
 
   .owners-card-header {
-    padding: 18px;
+    padding: 14px;
   }
 
   .table-footer {
     align-items: flex-start;
     flex-direction: column;
+    gap: 8px;
+    padding: 12px 14px;
   }
 
   .owners-toast {
@@ -934,11 +974,15 @@
 
   .add-owner-modal,
   .delete-modal {
-    padding: 21px;
+    padding: 18px 16px;
+    width: calc(100vw - 32px);
+    max-width: 440px;
+    border-radius: 14px;
   }
 
   .modal-actions {
     flex-direction: column-reverse;
+    gap: 8px;
   }
 
   .modal-cancel,
