@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/api/:path*",
+      "destination": "http://kostify.smkn1sumedang.sch.id/api/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }
