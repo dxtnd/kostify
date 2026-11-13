@@ -5,6 +5,10 @@
       "destination": "http://kostify.smkn1sumedang.sch.id/api/:path*"
     },
     {
+      "source": "/storage/:path*",
+      "destination": "http://kostify.smkn1sumedang.sch.id/storage/:path*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }
