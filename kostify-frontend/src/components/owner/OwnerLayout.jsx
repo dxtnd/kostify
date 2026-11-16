@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, Outlet } from "react-router-dom";
+import api from "../../services/api";
 import "./OwnerLayout.css";
 
 function OwnerLayout() {
@@ -36,18 +37,8 @@ function OwnerLayout() {
   const fetchKosts = async () => {
     try {
       setLoadingKosts(true);
-      const token = localStorage.getItem("token");
-      const response = await fetch("http://127.0.0.1:8000/api/owner/overview", {
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const result = await response.json();
-      if (!response.ok) throw new Error(result.message || "Gagal mengambil data kost.");
-
-      const ownerKosts = result.kosts || [];
+      const response = await api.get("/owner/overview");
+      const ownerKosts = response.data?.kosts || [];
       setKosts(ownerKosts);
 
       const savedKostId = localStorage.getItem("active_kost_id");
@@ -63,10 +54,12 @@ function OwnerLayout() {
         setActiveKostId(String(firstKost.id));
         localStorage.setItem("active_kost_id", String(firstKost.id));
         localStorage.setItem("active_kost", JSON.stringify(firstKost));
+        window.dispatchEvent(new Event("active-kost-changed"));
       } else {
         setActiveKostId("");
         localStorage.removeItem("active_kost_id");
         localStorage.removeItem("active_kost");
+        window.dispatchEvent(new Event("active-kost-changed"));
       }
     } catch (error) {
       console.error("Gagal mengambil data kost:", error);
